@@ -1,0 +1,35 @@
+buildscript {
+    ext { // build.gradle에서 사용하는 전역변수를 생성하는 키워드
+       springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management' // 스프링 부트의 의존성들을 관리해 주는 플러그인이라 꼭 추가해야함
+
+group 'com.nickname' // notice : nickname 대신 각자 원하는 이름을 입력해주세요!
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    jcenter()
+    // 많은 과정과 설정을 필요로 하는 mavenCentral는 라이브러리 업로드 난이도가 높아서 그대신 업로드 방법이 간단한 jcenter도 많이 사용함
+    // 더 나아가 jcenter에 라이브러리를 업로드하면 mavenCentral에도 업로드될 수 있도록 자동화 할 수도 있음
+    // 이 책에서는 우선 mavenCentral과 jcenter 둘 다 사용
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    // 인텔리제이는 메이븐 저장소의 데이터를 인덱싱해서 관리하기 때문에 커뮤니티 버전을 사용해도 의존성 자동완성이 가능
+    // Ctrl + Spacebar로 필요한 라이브러리 자동완성 기능 활용 가능
+}
