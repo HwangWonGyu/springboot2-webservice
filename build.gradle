@@ -32,4 +32,6 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
     // 인텔리제이는 메이븐 저장소의 데이터를 인덱싱해서 관리하기 때문에 커뮤니티 버전을 사용해도 의존성 자동완성이 가능
     // Ctrl + Spacebar로 필요한 라이브러리 자동완성 기능 활용 가능
+    testImplementation('junit:junit:4.13')
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
