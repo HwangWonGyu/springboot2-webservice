@@ -25,7 +25,7 @@ apply plugin: 'io.spring.dependency-management'//스프링 부트의 의존성�
 
 group 'com.jsh440274.book'
 version '1.0-SNAPSHOT'
-sourceCompatibility = 1.8
+//sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -33,10 +33,20 @@ repositories {
 }
 
 dependencies {
-//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     compile('org.springframework.boot:spring-boot-starter-web')
+    //compile('org.projectlombok:lombok')의 경우 롬복이 제대로 동작하지 않음
+    //annotationProcessor을 통해 컴파일 수행시 어노테이션에 대한 스캔과 롬복 설정을 해줌.
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    //테스트를 진행하는 과정에서 Execution failed for task ':test'오류가 발생했다.
+    //윗줄의 testRuntimeOnly를 주석처리하고 JUnit 추가.
+    //자세한 내용은 좀 더 찾아봐야 할 것 같다.
+    testImplementation("org.junit.vintage:junit-vintage-engine") {
+        exclude group: "org.hamcrest", module: "hamcrest-core"
+    }
 }
 
 test {
