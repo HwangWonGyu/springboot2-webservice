@@ -1,6 +1,58 @@
+// Groovy 언어로 작성된 build.gradle
+
+// - Groovy란?
+// JVM에서 실행되는 스크립트 언어
+// 문법이 Java와 비슷하며 상호호환이 가능
+
+// - build.gradle
+// 프로젝트 의존관계나 태스크를 정의할때 사용
+// 이 파일만 있더라도 빌드가 가능
+
+// cf.
+// - init.gradle
+// 초기화 스크립트라고 하며, build시에 가장 먼저 실행되는 스크립트 파일
+// 주로 사용자 정보 및 실행환경 초기화 등에 사용됨
+// - settings.gradle
+// 빌드 대상 프로젝트를 설정하는 스크립트
+// 예를 들어 프로젝트 하위에 여러개의 프로젝트가 담겨있는 멀티 프로젝트의 형태인 경우,
+// build의 대상이 되는 프로젝트를 지정하는 스크립트
+// - gradle.properties
+// 환경에 따라 값이 달라지는 파라미터들을 스크립트 밖에 기술할 때 사용
+
 buildscript {
     ext { // build.gradle에서 사용하는 전역변수를 생성하는 키워드
-       springBootVersion = '2.1.7.RELEASE'
+       springBootVersion = '2.5.2'
+        // 책에는 2.1.7.RELEASE 기준이지만
+        // 나는 현재 (2021-07-18) 시점 기준으로
+        // spring.io를 참고하여 GA버전 중 가장 최신 버전인 2.5.2를 적용
+
+        // - GA (General Availability)
+        // 테스트가 완료된 정식 릴리즈 버전으로 안정적으로 운영되어야 하는 프로젝트에서 사용
+        // 대부분 GA 버전을 가져다 사용하면됨
+
+        // - SNAPSHOT
+        // 스냅샷이 붙으면 아직 개발단계라는 의미이며, 일종의 백업시점
+
+        // 추가로 .RELEASE가 postfix로 붙는 버전 네이밍 규칙은
+        // 2020.0.0-M1 버전부터 생략되는 규칙으로 변경됨
+        // -> For releases, there will be no modifier.
+        // 새로운 네이밍 규칙 : YYYY.MINOR.MICRO[-MODIFIER]
+        // 관련 링크 : https://spring.io/blog/2020/04/30/updates-to-spring-versions
+
+
+        // 그런데 현재 IntelliJ의 gradle 버전이 6.3이므로
+        // Spring Boot가 요구하는 gradle 버전과 맞지 않아서 아래의 에러가 발생
+
+        // Caused by: org.gradle.api.GradleException:
+        // Spring Boot plugin requires Gradle 6.8.x, 6.9.x, or 7.x.
+        // The current version is Gradle 6.3
+
+        // 따라서 IntelliJ의 gradle도 Spring Boot가 요구하는 버전에 맞게 업그레이드
+        // 현재 (2021-07-18) 시점 기준으로 7.1이 최신
+        // gradle 다운로드 링크 : https://gradle.org/install/
+        // 이를 적용하기 위해 File - Settings - Gradle Projects - Use Gradle from 에서
+        // 'Specified Location'을 선택하고 다운로드 받은 gradle로 경로 변경
+
     }
     repositories {
         mavenCentral()
@@ -16,7 +68,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management' // 스프링 부트의 의존성들을 관리해 주는 플러그인이라 꼭 추가해야함
 
-group 'com.nickname' // notice : nickname 대신 각자 원하는 이름을 입력해주세요!
+group 'com.beststar'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -25,11 +77,49 @@ repositories {
     // 많은 과정과 설정을 필요로 하는 mavenCentral는 라이브러리 업로드 난이도가 높아서 그대신 업로드 방법이 간단한 jcenter도 많이 사용함
     // 더 나아가 jcenter에 라이브러리를 업로드하면 mavenCentral에도 업로드될 수 있도록 자동화 할 수도 있음
     // 이 책에서는 우선 mavenCentral과 jcenter 둘 다 사용
+    // 그런데, gradle 7.0 부터 deprecated 처리됨
+    // 그 이유는 JCenter 아티팩트 저장소의 유지보수 회사인 JFrog가
+    // 최근 JCenter의 지원을 중단하고 앞으로 서비스를 종료할 것이라고 발표했기 때문
+    // 발표에 따르면 2022년 2월 1일까지 JCenter에서 기존 아티팩트를 다운로드할 수 있음
+    // 관련 설명 : https://blog.gradle.org/jcenter-shutdown
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-web')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-    // 인텔리제이는 메이븐 저장소의 데이터를 인덱싱해서 관리하기 때문에 커뮤니티 버전을 사용해도 의존성 자동완성이 가능
-    // Ctrl + Spacebar로 필요한 라이브러리 자동완성 기능 활용 가능
+    // 책에 나오는 compile 메서드는 gradle 3.0 버전부터 deprecated돼 implementation 으로 변경됨
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Lombok
+    // 자바 개발시 자주 사용하는 메서드 등을 어노테이션 기반으로 자동 생성해주는 라이브러리
+    // 플러그인 설치는 한 번만 하면 되지만,
+    // build.gradle에 라이브러리를 추가하는 것과 Enable annotation processing를 체크하는 것은
+    // 적용하는 각 프로젝트 마다 개별로 진행해야함
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.projectlombok:lombok'
+
+    // testCompile 메서드 또한 같은 이유로 testImplementation 으로 변경됨
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // - dependency 관련 주요 메서드 정리
+    // 1) api : 의존 라이브러리 수정시 해당 모듈을 의존하고 있는 모듈들 또한 재빌드
+    // A(api) <- B <- C 일 때, C 에서 A 를 접근할 수 있음
+    // 따라서 A 수정시 B 와 C 모두 재빌드
+    // 2) implementaion : 의존 라이브러리 수정시 본 모듈까지만 재빌드
+    // A(implementation) <- B <- C 일 때, C 에서 A 를 접근할 수 없음
+    // A 수정시 B 까지만 재빌드
+    // 관련 설명 : https://developer.android.com/studio/build/dependencies?utm_source=android-studio#dependency_configurations
+
+    // Groovy 메서드는 괄호 생략 가능
+    // -> IntelliJ에서는 'Remove unnecessary parentheses'라고 제안함
+
+    // 인텔리제이는 메이븐 저장소의 데이터를 인덱싱해서 관리하기 때문에
+    // 커뮤니티 버전을 사용해도 의존성 자동완성이 가능
+    // 그러므로 Ctrl + Spacebar로 필요한 라이브러리 자동완성 기능 활용 가능
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
