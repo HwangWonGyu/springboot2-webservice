@@ -27,7 +27,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 // @WebMvcTest
 // 여러 스프링 테스트 애노테이션 중, Web(Spring MVC)에 집중할 수 있는 애노테이션
-// Spring Seciruty도 자동으로 테스트하며 수동으로 추가/삭제 가능
+// Spring Security도 자동으로 테스트하며 수동으로 추가/삭제 가능
 // @SpringBootTest 어노테이션은 통합테스트인데,
 // @WebMvcTest는 Web 레이어 관련 빈들만 등록하므로 비교적 가볍게 테스트 가능
 // 다음과 같은 내용만 스캔하도록 제한
