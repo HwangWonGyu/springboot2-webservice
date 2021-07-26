@@ -43,6 +43,13 @@ public class Posts {
         this.author = author;
     }
 
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
+
+
+
     // @Builder를 사용하는 이유는 무엇일까? 그냥 생성자로 생성하는 것이랑 무슨 차이가 있을까??
 
     // 그 이유는 생성자의 단점이 있기 때문이다.
