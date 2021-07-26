@@ -6,6 +6,7 @@ package com.example.springproject.domain.posts;
 // Service or Controller와는 전혀 다른 개념인가??
 // 내가 생각하는 Service는 비즈니스 로직을 처리하는 계층이고, Controller는 클라의 Request를 받아 라우팅해주는 계층이다.
 
+import com.example.springproject.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ import javax.persistence.*;
 //  JPA 같은걸 구현해서 쓰는 라이브러리들이 동적으로 뭘 한다거나 리플렉션을 한다거나 이런 것들이 있는데, 그런 것들을 하려면 기본 생성자가 필요하기 떄문이다.
 @Entity
 // 객체를 엔티티로 매핑시켜주는 어노테이션 https://ttungbab.tistory.com/198
-public class Posts {
+public class Posts extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
