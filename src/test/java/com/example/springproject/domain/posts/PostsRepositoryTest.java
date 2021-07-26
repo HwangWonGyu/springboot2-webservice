@@ -47,6 +47,9 @@ public class PostsRepositoryTest {
         Posts posts = postsList.get(0);
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
+
+        // 왜 게시글을 저장하는 것만 메소드에 담은 것이 아니라, 저장하고 불러오는거까지를 테스트 단위로 잡았는지 궁금하다.
+        // 저장하는 부분과 불러오는 부분 것 각각의 단위 테스트를 해야 하는게 맞지 않나??
     }
 
     @Test
@@ -64,13 +67,16 @@ public class PostsRepositoryTest {
 
         //then
         Posts posts = postsList.get(0);
+        // 왜 findById로 찾지 않고, 전부 다 찾은 다음에 get(0)을 할까??
+        // save 때 어차피 디비에서 Id를 가져오니, findById로 찾는게 훨씬 효율적이지 않을까??
 
         System.out.println(">>> createDate="+posts.getCreateDate()+", modefiedDate="+posts.getModifiedDate());
 
         assertThat(posts.getCreateDate()).isAfter(now);
         assertThat(posts.getModifiedDate()).isAfter(now);
     }
-
+    // 여기서 isAfter은 어떤 함수일까? 생성 때의 now와 같은지 확인하는 것 같긴 한데,,,
+    // 이렇게 어떤 함수인지, 어떤 역할을 하고 어떤 구조로 되어 있는지 알고 싶을 때 다른 사람들은 어떻게 접근하는지 알아보자.
 }
 
 // 이거 실행시키면, 데이터를 집어 넣어도, 마지막에 전부 delete해버린 후에 테이블까지 드랍한다.
