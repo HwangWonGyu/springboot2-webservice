@@ -1,6 +1,7 @@
 //도메인이란 소프트웨어에 대한 요구사항, 문제영역이다.
 package com.jsh440274.book.springboot.domain.posts;
 
+import com.jsh440274.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,8 @@ import javax.persistence.*;
 //기본값으로 클래스의 카멜케이스 이름(각 단어의 첫번째 글자를 대문자로 표시)을 언더스코어 네이밍(모두 소문자 표기 후 단어 사이에 _를 삽입)으로 테이블 이름을 매칭
 //ex) SalesManager.java -> sales_manager 테이블
 @Entity
-public class Posts {
+//BaseTimeEntity를 상속받아 JPA Auditing이 가능하게 함.
+public class Posts extends BaseTimeEntity {
     //해당 테이블의 PK
     @Id
     //PK생성규칙. GenerationType.IDENTITY 옵션을 추가해야만 auto_increment가 됨.
