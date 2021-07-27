@@ -26,9 +26,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 //SpringBootTest와 TestRestTemplate을 이용해서 JPA와 관련된 내용들을 테스트 할 수 있다.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 
-//RANDOM_PORT니까 랜덤한 값으로 포트 번호를 설정한다. 실행 결과 0번 포트로 잡히는데 0번으로 할 수 있나...?
-//0번은 UDP..?
-
+/*
+RANDOM_PORT니까 랜덤한 값으로 포트 번호를 설정한다. 실행 결과 0번 포트로 잡히는데 0번으로 할 수 있나...?
+0번은 UDP..?
+*/
 public class PostsApiControllerTest {
 
     @LocalServerPort
