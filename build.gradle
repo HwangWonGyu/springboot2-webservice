@@ -33,6 +33,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile('org.springframework.boot:spring-boot-starter-web')
     //compile('org.projectlombok:lombok')의 경우 롬복이 제대로 동작하지 않음
     //annotationProcessor을 통해 컴파일 수행시 어노테이션에 대한 스캔과 롬복 설정을 해줌.
@@ -47,6 +48,11 @@ dependencies {
     testImplementation("org.junit.vintage:junit-vintage-engine") {
         exclude group: "org.hamcrest", module: "hamcrest-core"
     }
+    //스프링 부트 버전에 맞춰 자동으로 JPA관련 라이브러리들의 버전을 관리해준다.
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    //별도의 설치 없이 프로젝트 의존성만으로 관리할 수 있는 인메모리 관계형 데이터베이스.
+    //메모리에서 실행되기 때문에 애플리케이션을 재시작 할때마다 초기화가 된다. 테스트에서 많이 쓰임.
+    compile('com.h2database:h2')
 }
 
 test {
