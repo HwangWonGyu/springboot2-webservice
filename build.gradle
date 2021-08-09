@@ -53,6 +53,8 @@ dependencies {
     //별도의 설치 없이 프로젝트 의존성만으로 관리할 수 있는 인메모리 관계형 데이터베이스.
     //메모리에서 실행되기 때문에 애플리케이션을 재시작 할때마다 초기화가 된다. 테스트에서 많이 쓰임.
     compile('com.h2database:h2')
+    //머스테치 스타터 의존성 등록
+    compile('org.springframework.boot:spring-boot-starter-mustache')
 }
 
 test {
