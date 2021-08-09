@@ -1,10 +1,13 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>스프링 부트 웹서비스</title>
-    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8" />
-</head>
-<body>
+{{>layout/header}}
+
     <h1>스프링 부트로 시작하는 웹 서비스</h1>
-</body>
-</html>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="posts/save" role="button"
+                   class="btn btn-primary">글 등록</a>
+                <!--a 태그를 이용해 글 등록 페이지로 이동하는 글 등록 버튼이 생성-->
+            </div>
+        </div>
+    </div>
+{{>layout/footer}}
