@@ -20,7 +20,7 @@ var main = {
             type: 'POST',
             url: '/api/v1/posts',
             dataType : 'json',
-            contentType: 'application/json; charset=UTF-8',
+            contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function (){
             alert('글이 등록되었습니다.');
@@ -33,6 +33,7 @@ var main = {
             /*
             done의 경우에는 성공했을 경우에 해당 함수를 실행하는것으로 이해했는데
             fail의 경우에 실행할 함수의 error는 어떤 방식으로 받을 수 있는걸까?
+            exception 같은 경우인가?
             */
         });
     }

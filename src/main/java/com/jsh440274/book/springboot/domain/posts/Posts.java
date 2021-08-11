@@ -28,7 +28,7 @@ public class Posts extends BaseTimeEntity {
     @Id
     //PK생성규칙. GenerationType.IDENTITY 옵션을 추가해야만 auto_increment가 됨.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     //테이블의 칼럼을 의미. 굳이 명시하지 않아도 해당 클래스의 필드는 모두 칼럼으로 취급된다.
     //기본값 이외에 필요한 옵션이 있을 경우 사용.
