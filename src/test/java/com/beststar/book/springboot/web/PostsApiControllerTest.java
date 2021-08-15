@@ -5,9 +5,7 @@ import com.beststar.book.springboot.domain.posts.PostsRepository;
 import com.beststar.book.springboot.web.dto.PostsSaveRequestDto;
 import com.beststar.book.springboot.web.dto.PostsUpdateRequestDto;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -16,7 +14,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
@@ -25,7 +22,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 // @WebMvcTest를 사용하지 않았는데, 이는 JPA 기능이 작동하지 않기 때문
 // Controller와 ControllerAdvice 등 외부 연동과 관련된 부분만 활성화되니
 // 지금처럼 JPA 기능까지 한번에 테스트할 때는 @SpringBootTest와 TestRestTemplate을 사용하면 됨
-@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PostsApiControllerTest {
 

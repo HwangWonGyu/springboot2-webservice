@@ -110,6 +110,19 @@ dependencies {
     // 이 책에서는 JPA 테스트, 로컬 환경에서의 구동에서 사용
     implementation 'com.h2database:h2'
 
+    // mustache
+    //
+    // 기본 파일 위치는 src/main/resources/templates 이며 스프링 부트가 자동으로 로딩함
+
+    // Handlebars/Mustache 플러그인
+    // IntelliJ 커뮤니티 버전에서도 사용 가능한 머스테치 플러그인이며
+    // 문법 체크, HTML 문법 지원, 자동완성 등을 지원해줌
+
+    // 'spring-boot-starter-mustache'
+    // 스프링 부트에서 공식 지원하는 템플릿 엔진인 머스테치의 스타터 dependency
+    // 스프링 부트가 버전관리를 해주기 때문에 개발자가 버전 호환성을 신경쓰지 않아도 됨
+    implementation 'org.springframework.boot:spring-boot-starter-mustache'
+
     // testCompile 메서드 또한 같은 이유로 testImplementation 으로 변경됨
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
