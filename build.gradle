@@ -111,7 +111,6 @@ dependencies {
     implementation 'com.h2database:h2'
 
     // mustache
-    //
     // 기본 파일 위치는 src/main/resources/templates 이며 스프링 부트가 자동으로 로딩함
 
     // Handlebars/Mustache 플러그인
@@ -122,6 +121,13 @@ dependencies {
     // 스프링 부트에서 공식 지원하는 템플릿 엔진인 머스테치의 스타터 dependency
     // 스프링 부트가 버전관리를 해주기 때문에 개발자가 버전 호환성을 신경쓰지 않아도 됨
     implementation 'org.springframework.boot:spring-boot-starter-mustache'
+
+
+    // spring-boot-starter-oauth2-client
+    // 소셜 로그인 등 클라이언트 입장에서 소셜 기능 구현 시 필요한 의존성
+    // spring-security-oauth2-client와 spring-security-oauth2-jose를 기본으로 관리해줌
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
 
     // testCompile 메서드 또한 같은 이유로 testImplementation 으로 변경됨
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
