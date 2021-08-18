@@ -25,7 +25,7 @@ apply plugin: 'io.spring.dependency-management'//스프링 부트의 의존성�
 
 group 'com.jsh440274.book'
 version '1.0-SNAPSHOT'
-sourceCompatibility = 1.8
+//sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -33,10 +33,28 @@ repositories {
 }
 
 dependencies {
-//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile('org.springframework.boot:spring-boot-starter-web')
+    //compile('org.projectlombok:lombok')의 경우 롬복이 제대로 동작하지 않음
+    //annotationProcessor을 통해 컴파일 수행시 어노테이션에 대한 스캔과 롬복 설정을 해줌.
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    //테스트를 진행하는 과정에서 Execution failed for task ':test'오류가 발생했다.
+    //윗줄의 testRuntimeOnly를 주석처리하고 JUnit 추가.
+    //자세한 내용은 좀 더 찾아봐야 할 것 같다.
+    testImplementation("org.junit.vintage:junit-vintage-engine") {
+        exclude group: "org.hamcrest", module: "hamcrest-core"
+    }
+    //스프링 부트 버전에 맞춰 자동으로 JPA관련 라이브러리들의 버전을 관리해준다.
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    //별도의 설치 없이 프로젝트 의존성만으로 관리할 수 있는 인메모리 관계형 데이터베이스.
+    //메모리에서 실행되기 때문에 애플리케이션을 재시작 할때마다 초기화가 된다. 테스트에서 많이 쓰임.
+    compile('com.h2database:h2')
+    //머스테치 스타터 의존성 등록
+    compile('org.springframework.boot:spring-boot-starter-mustache')
 }
 
 test {
