@@ -50,4 +50,8 @@ dependencies {
 
     // session 저장소를 jdbc로 접근
     compile('org.springframework.session:spring-session-jdbc')
+
+    // spring security test
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation("org.springframework.security:spring-security-test")
 }
