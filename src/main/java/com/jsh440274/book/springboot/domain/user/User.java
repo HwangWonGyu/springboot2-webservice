@@ -13,6 +13,11 @@ import javax.persistence.*;
 public class User extends BaseTimeEntity {
 
     //왜 그냥 long이 아니라 Long일까?
+    /*
+    id의 타입이 long일 경우 0으로 초기화되어 실제 0의 값인지 초기화된 값인지를 구분하기가 힘들어진다.
+    Long의 wrapper타입으로 선언해주면 Nullable하게 명시할 수 있어 0을 구분하기 용이하다.
+    https://hch4102.tistory.com/106
+    */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,21 +37,21 @@ public class User extends BaseTimeEntity {
     private Role role;
 
     @Builder
-    public User(String name, String email, String picture, Role role){
+    public User(String name, String email, String picture, Role role) {
         this.name = name;
         this.email = email;
         this.picture = picture;
         this.role = role;
     }
 
-    public User update(String name, String picture){
+    public User update(String name, String picture) {
         this.name = name;
         this.picture = picture;
 
         return this;
     }
 
-    public String getRoleKey(){
+    public String getRoleKey() {
         return this.role.getKey();
     }
 }
