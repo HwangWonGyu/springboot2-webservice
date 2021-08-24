@@ -44,4 +44,10 @@ dependencies {
     compile('com.h2database:h2')
 
     compile('org.springframework.boot:spring-boot-starter-mustache')
+
+    // oauth 인증 인가
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+
+    // session 저장소를 jdbc로 접근
+    compile('org.springframework.session:spring-session-jdbc')
 }
