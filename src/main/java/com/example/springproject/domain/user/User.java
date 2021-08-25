@@ -37,12 +37,15 @@ public class User extends BaseTimeEntity {
         this.role = role;
     }
 
-    public User update(String name, String picture) {
+    public User updateNameAndPicture(String name, String picture) {
         this.name = name;
         this.picture = picture;
 
         return this;
     }
+    // 객체의 행위 내부 로직에 대해 외부에서 알 수 없어야 한다. - 객체지향의 사실과 오해
+    // 여기 정의된 public 메소드 전부 private으로 해줘야 하는 것 아닌가? 책에서는 왜 public으로 되어 있을까??
+    // 그리고 만약 private로 바꾼다면, updateNameAndPicture에서 map을 사용하고 있는데, 이건 어떻게 처리하는게 좋을까?
 
     public String getRoleKey() {
         return this.role.getKey();

@@ -17,3 +17,4 @@ public class SessionUser implements Serializable {
         this.picture = user.getPicture();
     }
 }
+// User클래스 직렬화
