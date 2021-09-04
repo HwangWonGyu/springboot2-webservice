@@ -15,7 +15,12 @@
             {{/userName}}
             {{^userName}}
                 <!--스프링 시큐리티에서 기본적으로 제공하는 로그인 URL.-->
+                <!--application-oauth.properties에 등록한 redirect-uri값에 맞춰서 자동으로 등록됨-->
+                <!--/oauth2/authorization/까지는 고정. 마지막 path만 소셜 로그인 코드를 사용한다.-->
+                <!--구글 로그인-->
                 <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google login</a>
+                <!--네이버 로그인-->
+                <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver login</a>
             {{/userName}}
         </div>
     </div>
