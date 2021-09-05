@@ -65,6 +65,8 @@ dependencies {
     참고 : https://codingmania.tistory.com/18
      */
     compile('org.springframework.session:spring-session-jdbc')
+
+    testCompile('org.springframework.security:spring-security-test')
 }
 
 test {
