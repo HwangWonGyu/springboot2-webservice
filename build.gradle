@@ -129,8 +129,20 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 
 
+    // spring-session-jdbc
+    // 세션 저장소로 데이터베이스를 사용하면 적은 설정으로도 여러 WAS 간의 공용 세션을 사용할 수 있음
+    // 단, 로그인 요청마다 DB IO가 발생하여 성능상 이슈가 발생할 수 있음
+    // 따라서 백오피스, 사내 시스템 용도에서 사용
+    implementation 'org.springframework.session:spring-session-jdbc'
+
+
+
     // testCompile 메서드 또한 같은 이유로 testImplementation 으로 변경됨
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+    //
+    testImplementation 'org.springframework.security:spring-security-test'
 
     // - dependency 관련 주요 메서드 정리
     // 1) api : 의존 라이브러리 수정시 해당 모듈을 의존하고 있는 모듈들 또한 재빌드
