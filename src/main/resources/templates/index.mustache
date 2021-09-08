@@ -5,6 +5,29 @@
     <div class="row">
         <div class="col-md-6">
             <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+            <!--머스테치는 다른 언어와 같은 if문을 제공하지 않음
+            true/false 여부만 판단할 뿐
+            그래서 머스테치에서는 항상 최종값을 넘겨줘야함
+            여기서도 역시 userName이 있다면 userName을 노출시키도록 구성했음-->
+            {{#userName}}
+                Logged in as: <span id ="user">{{userName}}</span>
+                <!--스프링 시큐리티에서 기본적으로 제공하는 로그아웃 URL
+                즉, 개발자가 별도로 저 URL에 해당하는 컨트롤러를 만들 필요가 없음
+                SecurityConfig 클래스에서 URL을 변경할 순 있지만 기본 URL을 사용해도 충분하니 여기서는 그대로 사용-->
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            {{/userName}}
+            <!--머스테치에서 해당 값이 존재하지 않는 경우에는 ^ 를 사용
+            여기서는 userName이 없다면 로그인 버튼을 노출시키도록 구성-->
+            {{^userName}}
+                <!--스프링 시큐리티에서 기본적으로 제공하는 로그인 URL
+                로그아웃 URL과 마찬가지로 개발자가 별도의 컨트롤러를 생성할 필요가 없음-->
+                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+
+                <!--네이버 로그인은 URL은 application-oauth.properties에 등록한 redirect-uri 값에 맞춰 자동으로 등록됨
+                /oauth2/authorization/ 까지는 고정이고 마지막 Path만 각 소셜 로그인 코드를 사용하면 됨
+                여기서는 naver가 마지막 Path가 됨-->
+                <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
+            {{/userName}}
         </div>
     </div>
     <br>
