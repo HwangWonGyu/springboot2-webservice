@@ -15,6 +15,13 @@ cache:
 script: "./gradlew clean build"
 
 before_install:
+#  gradle 버전 변경
+  - sudo wget https://services.gradle.org/distributions/gradle-6.8-bin.zip
+  - sudo unzip -qq gradle-6.8-bin.zip
+  - export GRADLE_HOME=$PWD/gradle-6.8
+  - export PATH=$GRADLE_HOME/bin:$PATH
+  - gradle -version
+  - gradle wrap
   - chmod +x gradlew
 
 # CI 실행 완료 시 메일로 알람
