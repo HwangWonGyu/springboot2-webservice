@@ -2,3 +2,7 @@
 .gradle
 .idea
 build
+
+
+application-oauth.properties
+# 클라이언트 ID와 클라이언트 시크릿은 보안이 중요한 정보들이므로 노출되면 안됨. 따라서 .gitignore에 추가

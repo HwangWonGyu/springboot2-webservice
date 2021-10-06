@@ -3,6 +3,9 @@ package com.beststar.book.springboot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+// @EnableJpaAuditing // JPA Auditing 활성화
+// -> @WebMvcTest에서도 스캔하는데, 이 때문에 @Entity 클래스가 테스트간 필요하게 되고 아래와 같은 에러가 발생함
+// java.lang.IllegalArgumentException : At least one JPA metamodel must be present!
 
 /*
 * @SpringBootApplication
@@ -25,7 +28,7 @@ public class Application {
         *
         * 꼭 스프링 부트에서만 내장 WAS를 사용할 수 있는 것은 아니지만,
         * 스프링 부트에서는 내장 WAS를 사용하는 것을 권장함
-        * 그 이유는 '언제 어디서나 같은 환겨에서 스프링 부트를 배포'할 수 있기 때문
+        * 그 이유는 '언제 어디서나 같은 환경에서 스프링 부트를 배포'할 수 있기 때문
         * 외장 WAS를 쓴다고 하면 모든 서버는 WAS의 종류와 버전, 설정을 일치시켜야만 함
         * 새로운 서버가 추가되면 모든 서버가 같은 WAS 환경을 구축해야만 함
         * */
