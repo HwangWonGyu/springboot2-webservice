@@ -110,6 +110,8 @@ dependencies {
     // 이 책에서는 JPA 테스트, 로컬 환경에서의 구동에서 사용
     implementation 'com.h2database:h2'
 
+    implementation 'org.mariadb.jdbc:mariadb-java-client'
+
     // mustache
     // 기본 파일 위치는 src/main/resources/templates 이며 스프링 부트가 자동으로 로딩함
 
