@@ -42,6 +42,17 @@ deploy:
     on:
       all_branches: true # github 저장소의 기본 branch인 master 외에도 다른 branch를 허용
 
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: freelec-springboot-build-beststar
+    key: freelec-springboot2-webservice.zip # 빌드 파일을 압축해서 전달
+    bundle_type: zip # 압축 확장자
+    application: freelec-springboot2-webservice # 웹 콘솔에서 등록한 CodeDeploy 애플리케이션
+    deployment_group: freelec-springboot2-webservice-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
+    region: ap-northeast-2
+    wait-until-deployed: true
+
 # CI 실행 완료 시 메일로 알람
 notifications:
   email:
